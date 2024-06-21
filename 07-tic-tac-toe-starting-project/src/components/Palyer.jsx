@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false); // UI 시작할때, 수정상태가 아니므로 입력필드를 띄우지 않겠다는 뜻으로 false이다.
 
@@ -12,6 +17,7 @@ export default function Player({ initialName, symbol, isActive }) {
    */
   const handleEditClick = () => {
     setIsEditing((editing) => !editing); // isEditing ? false : true -> !isEditing -> (editing)) => !editing
+    onChangeName(symbol, playerName);
   };
 
   const handleChange = (event) => {
