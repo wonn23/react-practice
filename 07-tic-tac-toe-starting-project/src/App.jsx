@@ -29,7 +29,7 @@ function App() {
   return (
     <main>
       <div id="game-container">
-        <ol id="players" className="highlight=-player">
+        <ol id="players" className="highlight-player">
           <Player
             initialName={"Player 1"}
             symbol={"X"}
@@ -43,7 +43,7 @@ function App() {
         </ol>
         <GameBoard onSelectSquare={handleSelectSquare} turns={gameTurns} />
       </div>
-      <Log />
+      <Log turns={gameTurns} />
     </main>
   );
 }
