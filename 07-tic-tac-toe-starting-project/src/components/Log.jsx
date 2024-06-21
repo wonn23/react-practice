@@ -1,9 +1,3 @@
-export default function Log({ log }) {
-  return (
-    <ol id="log">
-      {log.map((logEntry, index) => (
-        <li key={index}>{logEntry}</li>
-      ))}
-    </ol>
-  );
+export default function Log() {
+  return <ol id="log"></ol>;
 }
