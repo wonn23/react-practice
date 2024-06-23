@@ -7,4 +7,5 @@ import { createContext } from "react";
 export const CartContext = createContext({
   items: [], // 값 불러오기
   addItemToCart: () => {}, // 값 업데이트하는 함수
+  updateItemQuantity: () => {},
 });

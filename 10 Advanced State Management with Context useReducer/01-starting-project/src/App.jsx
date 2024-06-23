@@ -70,6 +70,7 @@ function App() {
   const ctxValue = {
     items: shoppingCart.items,
     addItemToCart: handleAddItemToCart,
+    updateItemQuantity: handleUpdateCartItemQuantity,
   };
 
   return (
@@ -81,10 +82,7 @@ function App() {
      *  context value를 useState와 연결시키는 방법은
      */
     <CartContext.Provider value={ctxValue}>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+      <Header />
       <Shop>
         <ul id="products">
           {DUMMY_PRODUCTS.map((product) => (
