@@ -17,7 +17,9 @@ export default function Player({
    */
   const handleEditClick = () => {
     setIsEditing((editing) => !editing); // isEditing ? false : true -> !isEditing -> (editing)) => !editing
-    onChangeName(symbol, playerName);
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   };
 
   const handleChange = (event) => {

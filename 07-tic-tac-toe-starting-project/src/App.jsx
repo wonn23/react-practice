@@ -3,7 +3,7 @@ import Player from "./components/Palyer";
 import GameBoard from "./components/GameBoard";
 import Log from "./components/Log";
 import GameOver from "./components/GameOver";
-import { WINNING_COMBINATIONS } from "./winnig-combinations";
+import { WINNING_COMBINATIONS } from "./winning-combinations";
 
 const PLAYERS = {
   X: "Player 1",
@@ -73,20 +73,13 @@ function App() {
 
   function handleSelectSquare(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
-      let currentPlayer = "X";
+      const currentPlayer = deriveActivePlayer(prevTurns);
 
-      if (prevTurns.length > 0 && prevTurns[0].player === "X") {
-        currentPlayer = "O";
-      }
-      const updatedTurns = [
-        {
-          square: { row: rowIndex, col: colIndex },
-          player: activePlayer,
-        },
+      const updateTurns = [
+        { square: { row: rowIndex, col: colIndex }, player: currentPlayer },
         ...prevTurns,
       ];
-
-      return updatedTurns;
+      return updateTurns;
     });
   }
 
@@ -109,13 +102,13 @@ function App() {
         <ol id="players" className="highlight-player">
           <Player
             initialName={PLAYERS.X}
-            symbol={"X"}
+            symbol="X"
             isActive={activePlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
           <Player
             initialName={PLAYERS.O}
-            symbol={"O"}
+            symbol="O"
             isActive={activePlayer === "O"}
             onChangeName={handlePlayerNameChange}
           />
