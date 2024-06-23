@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import Shop from "./components/Shop.jsx";
 import Product from "./components/Product.jsx";
 import { DUMMY_PRODUCTS } from "./dummy-products.js";
+import { CartContext } from "./store/shopping-cart-context.jsx";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState({
@@ -67,7 +68,12 @@ function App() {
   }
 
   return (
-    <>
+    /**
+     *  createContext를 Header와 Shop을 감싸는 이유는
+     *  자식 컴포넌트까지 영향을 컨테스트에 접속할 수 있기 때문이다.
+     *  컴포넌트 뒤에 `.` 온점을 찍는 것은 특정 오브젝트 안에 중첩된 속성값이 실질적인 컴포넌트(중첩된 속성의 값이 유효한 리액트 컴포넌트)가 되는 경우 jsx 파일에 유효하다.
+     */
+    <CartContext.Provider>
       <Header
         cart={shoppingCart}
         onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
@@ -81,7 +87,7 @@ function App() {
           ))}
         </ul>
       </Shop>
-    </>
+    </CartContext.Provider>
   );
 }
 
