@@ -10,6 +10,7 @@ import { sortPlacesByDistance } from "./loc";
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
+  const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState([]);
 
   navigator.geolocation.getCurrentPosition((position) => {
@@ -18,6 +19,8 @@ function App() {
       position.coords.latitude,
       position.coords.longitude
     );
+
+    setAvailablePlaces(sortedPlaces);
   }); // 사용자의 위도, 경도 위치를 반환하는 함수는 Side Effect이다. 컴포넌트와 직접적인 연관이 없다.
 
   function handleStartRemovePlace(id) {
@@ -72,7 +75,7 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={availablePlaces}
           onSelectPlace={handleSelectPlace}
         />
       </main>
