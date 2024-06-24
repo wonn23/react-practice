@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import Places from "./components/Places.jsx";
 import { AVAILABLE_PLACES } from "./data.js";
@@ -13,15 +13,17 @@ function App() {
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState([]);
 
-  navigator.geolocation.getCurrentPosition((position) => {
-    const sortedPlaces = sortPlacesByDistance(
-      AVAILABLE_PLACES,
-      position.coords.latitude,
-      position.coords.longitude
-    );
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const sortedPlaces = sortPlacesByDistance(
+        AVAILABLE_PLACES,
+        position.coords.latitude,
+        position.coords.longitude
+      );
 
-    setAvailablePlaces(sortedPlaces);
-  }); // 사용자의 위도, 경도 위치를 반환하는 함수는 Side Effect이다. 컴포넌트와 직접적인 연관이 없다.
+      setAvailablePlaces(sortedPlaces);
+    }); // 사용자의 위도, 경도 위치를 반환하는 함수는 Side Effect이다. 컴포넌트와 직접적인 연관이 없다.
+  }, []);
 
   function handleStartRemovePlace(id) {
     modal.current.open();
@@ -76,6 +78,7 @@ function App() {
         <Places
           title="Available Places"
           places={availablePlaces}
+          fallbackText="Sorting places by distance..."
           onSelectPlace={handleSelectPlace}
         />
       </main>
