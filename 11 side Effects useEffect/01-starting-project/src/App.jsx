@@ -12,6 +12,14 @@ function App() {
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
 
+  navigator.geolocation.getCurrentPosition((position) => {
+    const sortedPlaces = sortPlacesByDistance(
+      AVAILABLE_PLACES,
+      position.coords.latitude,
+      position.coords.longitude
+    );
+  }); // 사용자의 위도, 경도 위치를 반환하는 함수는 Side Effect이다. 컴포넌트와 직접적인 연관이 없다.
+
   function handleStartRemovePlace(id) {
     modal.current.open();
     selectedPlace.current = id;
