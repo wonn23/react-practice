@@ -42,6 +42,14 @@ function App() {
       const place = AVAILABLE_PLACES.find((place) => place.id === id);
       return [place, ...prevPickedPlaces];
     });
+
+    const storedIds = JSON.parse(localStorage.getItem("selectedPlaces")) || [];
+    if (storedIds.indexOf(id) === -1) {
+      localStorage.setItem(
+        "selectedPlaces",
+        JSON.stringify([id, ...storedIds])
+      ); // 새로고침해도 내가 선택한 장소들이 저장되어있도록 만들어보자
+    }
   }
 
   function handleRemovePlace() {
