@@ -1,8 +1,8 @@
-import Header from "./components/Header.jsx";
-import UserInput from "./components/UserInput.jsx";
-import Results from "./components/Results.jsx";
+import Header from './components/Header.jsx';
+import UserInput from './components/UserInput.jsx';
+import Results from './components/Results.jsx';
 
-import { useState } from "react";
+import {useState} from 'react';
 
 function App() {
   const [userInput, setUserInput] = useState({
@@ -31,7 +31,7 @@ function App() {
       <Header />
       <UserInput userInput={userInput} onChange={handleChange} />
       {!inputIsValid && (
-        <p className="center">Please enter a duration greater than zero</p>
+        <p className='center'>Please enter a duration greater than zero</p>
       )}
       {inputIsValid && <Results input={userInput} />}
     </>
