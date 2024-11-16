@@ -1,17 +1,10 @@
 import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
 
 import styled from 'styled-components'
+import { ITodo, ITodoActions } from '../types/todo.types'
 
-interface ITodo {
-  id: number
-  text: string
-  checked: boolean
-}
-
-interface ITodoListItemProps {
+interface ITodoListItemProps extends ITodoActions {
   todo: ITodo
-  onRemove: (id: number) => void
-  onToggle: (id: number) => void
 }
 
 const TodoListItem = ({ todo, onRemove, onToggle }: ITodoListItemProps) => {

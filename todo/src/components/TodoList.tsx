@@ -1,36 +1,24 @@
 import styled from 'styled-components'
 import TodoListItem from './TodoListItem'
+import { ITodo, ITodoActions } from '../types/todo.types'
 
-interface ITodo {
-  id: number
-  text: string
-  checked: boolean
-}
-
-interface ITodoListProps {
+interface ITodoListProps extends ITodoActions {
   todos: ITodo[]
-  onRemove: (id: number) => void
-  onToggle: (id: number) => void
 }
 
-const TodoList = ({ todos, onRemove, onToggle }: ITodoListProps) => {
+const TodoList = ({ todos, ...restProps }: ITodoListProps) => {
   return (
-    <List>
+    <StyledFlex>
       {todos.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          onRemove={onRemove}
-          onToggle={onToggle}
-          todo={todo}
-        />
+        <TodoListItem key={todo.id} todo={todo} {...restProps} />
       ))}
-    </List>
+    </StyledFlex>
   )
 }
 
 export default TodoList
 
-const List = styled.div`
+const StyledFlex = styled.div`
   min-height: 320px;
   max-height: 513px;
   overflow-y: auto;

@@ -23,7 +23,7 @@ app.get('/places', async (req, res) => {
 
   const placesData = JSON.parse(fileContent);
 
-  res.status(200).json({ places: placesData });
+  res.status(200).json({places: placesData});
 });
 
 app.get('/user-places', async (req, res) => {
@@ -31,7 +31,7 @@ app.get('/user-places', async (req, res) => {
 
   const places = JSON.parse(fileContent);
 
-  res.status(200).json({ places });
+  res.status(200).json({places});
 });
 
 app.put('/user-places', async (req, res) => {
@@ -39,7 +39,7 @@ app.put('/user-places', async (req, res) => {
 
   await fs.writeFile('./data/user-places.json', JSON.stringify(places));
 
-  res.status(200).json({ message: 'User places updated!' });
+  res.status(200).json({message: 'User places updated!'});
 });
 
 // 404
@@ -47,7 +47,8 @@ app.use((req, res, next) => {
   if (req.method === 'OPTIONS') {
     return next();
   }
-  res.status(404).json({ message: '404 - Not Found' });
+  res.status(404).json({message: '404 - Not Found'});
 });
 
+console.log(`port 3000 is listening`);
 app.listen(3000);

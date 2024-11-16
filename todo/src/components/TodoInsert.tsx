@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react'
 import styled from 'styled-components'
 
-interface TodoInsertProps {
+interface ITodoInsertProps {
   onInsert: (text: string) => void
 }
 
-const TodoInsert = ({ onInsert }: TodoInsertProps) => {
+const TodoInsert = ({ onInsert }: ITodoInsertProps) => {
   const [value, setValue] = useState('')
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
